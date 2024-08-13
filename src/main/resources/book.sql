@@ -1,0 +1,4 @@
+-- 프로젝트에 ojdbc8.jar 연결하기(오라클db driver)
+-- 프로젝트 -> build path -> ojdbc8 추가하기
+-- Deployment Assembly -> Add -> Java  Build Path Entires -> ohjdbc8 추가
+--확인법 : Referenced Libraries 에 ojdbc8 확인하기
