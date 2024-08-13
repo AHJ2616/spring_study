@@ -13,7 +13,7 @@ import lombok.extern.log4j.Log4j2;
 
 //테스트 코드에 필수 3가지
 @RunWith(SpringJUnit4ClassRunner.class)  //Run as > test 가능 하게 만들어 준다.(메서드 별로 test가 가능하다)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml") //참조 파일
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml") //참조 파일
 @Log4j2 // log출력
 public class SampleTests {
 	

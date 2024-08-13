@@ -2,8 +2,38 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+		<!-- hikariCP 1,2단계 세팅 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	
+		<!-- log4jdbc를 이용하는 경우 사용안한다 -->
+		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property>  -->
+		
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> 
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
+		
+			
+		<property name="username" value="book"></property>
+		<property name="password" value="book"></property>
+	</bean>
+
+	<!-- HikariCP configuration : 적용 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
+	<!-- Mybatis를 이용하여 query 처리 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+		
+		<!-- mybatis용으로 spring에서 적용 -->
+	<mybatis-spring:scan base-package="net.kkwcloud.mapper"/>
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<!-- 하단에 있는 Namespaces에서 context 체크 하기 > 자동완성이 적용된다. -->

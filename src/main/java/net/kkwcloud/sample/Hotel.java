@@ -18,10 +18,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 //@AllArgsConstructor //필드의 모든 값을 넣는 생성자 만들기
 //@NoArgsConstructor //기본생성자
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class Hotel {
 	
-	@NonNull
 	private Chef chef;
 	private String name;
 	private Date age;

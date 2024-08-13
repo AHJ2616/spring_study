@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml를 활용한 공통코드 -->
+
+<mapper namespace="net.kkwcloud.mapper.TimeMapper"> <!-- mapping할 interface경로 -->
+<select id="getTime_xml" resultType="String"> <!-- String 소문자로 작성해도 된다. -->
+select sysdate from dual
+</select> <!-- id="메서드 명" -->
+</mapper>
