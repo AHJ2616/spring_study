@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<!-- 버전업그레이드가 필요하다(오류발생) 
+	<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> -->
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- 톰캣의 web.xml 17행 코드를 copy -->
+	<web-app version="4.0"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                       
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+
+	<!-- 스프링이 관리하는 영역(객체관리,jdbc관리, mapper관리 등) -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
-	
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+
+	<!-- Listener : 웹 애플리케이션 구동시 동작한다.(초기화를 해준다) -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- Processes application requests -->
+	<!-- 컨트롤러를 담당하는 객체가 프론트와 같이 서블릿 실행 -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -24,7 +34,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
